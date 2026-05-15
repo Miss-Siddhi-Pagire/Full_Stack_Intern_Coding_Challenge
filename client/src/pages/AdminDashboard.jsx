@@ -128,6 +128,41 @@ const AdminDashboard = () => {
             </table>
           </div>
         </div>
+        {/* Stores Table */}
+        <div className="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden">
+          <div className="px-6 py-4 border-b border-gray-50 flex justify-between items-center">
+            <h2 className="text-lg font-bold text-gray-900">Registered Stores</h2>
+          </div>
+          <div className="overflow-x-auto">
+            <table className="w-full text-left">
+              <thead className="bg-gray-50 text-gray-500 text-xs uppercase font-semibold">
+                <tr>
+                  <th className="px-6 py-3">Store Name</th>
+                  <th className="px-6 py-3">Email</th>
+                  <th className="px-6 py-3">Address</th>
+                  <th className="px-6 py-3">Owner</th>
+                  <th className="px-6 py-3">Rating</th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-gray-100">
+                {stores.map(store => (
+                  <tr key={store.id} className="hover:bg-gray-50 transition-colors">
+                    <td className="px-6 py-4 text-sm font-medium text-gray-900">{store.name}</td>
+                    <td className="px-6 py-4 text-sm text-gray-500">{store.email}</td>
+                    <td className="px-6 py-4 text-sm text-gray-500 max-w-xs truncate">{store.address}</td>
+                    <td className="px-6 py-4 text-sm text-gray-500">{store.owner_name}</td>
+                    <td className="px-6 py-4 text-sm">
+                      <div className="flex items-center text-amber-500 font-bold">
+                        <Star size={16} className="fill-current mr-1" />
+                        {Number(store.overall_rating || 0).toFixed(1)}
+                      </div>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </div>
       </main>
     </div>
   );
