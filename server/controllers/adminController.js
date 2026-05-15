@@ -94,10 +94,41 @@ const getUsers = async (req, res, next) => {
   }
 };
 
+const getUserDetails = async (req, res, next) => {
+  try {
+    const { id } = req.params;
+    const user = await User.findById(id);
+
+    if (!user) {
+      return res.status(404).json({ success: false, message: 'User not found' });
+    }
+
+    let extraData = {};
+    if (user.role === 'Store Owner') {
+      const store = await Store.findByOwnerId(user.id);
+      if (store) {
+        const stats = await Store.getStats(store.id);
+        extraData = {
+          storeName: store.name,
+          averageRating: stats.averageRating || 0
+        };
+      }
+    }
+
+    res.status(200).json({
+      success: true,
+      data: { ...user, ...extraData }
+    });
+  } catch (err) {
+    next(err);
+  }
+};
+
 module.exports = {
   addStore,
   addUser,
   getStats,
   getStores,
-  getUsers
+  getUsers,
+  getUserDetails
 };
