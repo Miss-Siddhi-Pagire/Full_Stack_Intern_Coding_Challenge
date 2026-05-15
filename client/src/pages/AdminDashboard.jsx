@@ -1,7 +1,8 @@
 import { useState, useEffect } from 'react';
 import api from '../services/api';
-import { Users, Store, Star, LogOut, Filter, ArrowUpDown } from 'lucide-react';
+import { Users, Store, Star, Filter, ArrowUpDown } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
+import Navbar from '../components/Navbar';
 
 const AdminDashboard = () => {
   const [stats, setStats] = useState({ totalUsers: 0, totalStores: 0, totalRatings: 0 });
@@ -36,30 +37,13 @@ const AdminDashboard = () => {
     navigate('/login');
   };
 
+  const currentUser = JSON.parse(localStorage.getItem('user'));
+
   if (loading) return <div className="flex items-center justify-center min-h-screen">Loading...</div>;
 
   return (
     <div className="min-h-screen bg-gray-50">
-      {/* Sidebar/Nav */}
-      <nav className="bg-white shadow-sm border-b">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between h-16">
-            <div className="flex items-center">
-              <span className="text-2xl font-bold text-indigo-600">AdminPanel</span>
-            </div>
-            <div className="flex items-center space-x-4">
-              <span className="text-gray-700 font-medium">Hello, Administrator</span>
-              <button
-                onClick={handleLogout}
-                className="flex items-center space-x-1 text-gray-500 hover:text-red-600 transition-colors"
-              >
-                <LogOut size={18} />
-                <span>Logout</span>
-              </button>
-            </div>
-          </div>
-        </div>
-      </nav>
+      <Navbar title="AdminPanel" user={currentUser} />
 
       <main className="max-w-7xl mx-auto py-8 px-4 sm:px-6 lg:px-8">
         {/* Stats Grid */}

@@ -1,7 +1,8 @@
 import { useState, useEffect } from 'react';
 import api from '../services/api';
-import { Search, MapPin, Star, LogOut, LayoutGrid } from 'lucide-react';
+import { Search, MapPin, Star, LayoutGrid } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
+import Navbar from '../components/Navbar';
 
 const UserDashboard = () => {
   const [stores, setStores] = useState([]);
@@ -29,32 +30,11 @@ const UserDashboard = () => {
     navigate('/login');
   };
 
+  const currentUser = JSON.parse(localStorage.getItem('user'));
+
   return (
     <div className="min-h-screen bg-gray-50">
-      <nav className="bg-white shadow-sm border-b sticky top-0 z-10">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between h-16">
-            <div className="flex items-center">
-              <span className="text-2xl font-bold text-indigo-600">StoreRating</span>
-            </div>
-            <div className="flex items-center space-x-6">
-              <button
-                onClick={() => navigate('/change-password')}
-                className="text-gray-600 hover:text-indigo-600 text-sm font-medium transition-colors"
-              >
-                Change Password
-              </button>
-              <button
-                onClick={handleLogout}
-                className="flex items-center space-x-1 text-gray-500 hover:text-red-600 transition-colors"
-              >
-                <LogOut size={18} />
-                <span>Logout</span>
-              </button>
-            </div>
-          </div>
-        </div>
-      </nav>
+      <Navbar title="StoreRating" user={currentUser} />
 
       <main className="max-w-7xl mx-auto py-8 px-4 sm:px-6 lg:px-8">
         {/* Search Bars */}
