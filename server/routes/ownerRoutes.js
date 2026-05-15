@@ -5,5 +5,6 @@ const authenticate = require('../middleware/authMiddleware');
 const authorize = require('../middleware/roleMiddleware');
 
 router.get('/stats', authenticate, authorize('Store Owner'), ownerController.getStoreStats);
+router.get('/ratings', authenticate, authorize('Store Owner'), ownerController.getRatings);
 
 module.exports = router;
