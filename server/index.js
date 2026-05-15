@@ -14,11 +14,13 @@ const errorMiddleware = require('./middleware/errorMiddleware');
 const authRoutes = require('./routes/authRoutes');
 const adminRoutes = require('./routes/adminRoutes');
 const userRoutes = require('./routes/userRoutes');
+const ownerRoutes = require('./routes/ownerRoutes');
 
 // Routes
 app.use('/api/auth', authRoutes);
 app.use('/api/admin', adminRoutes);
 app.use('/api/user', userRoutes);
+app.use('/api/owner', ownerRoutes);
 
 // Health Check Route
 app.get('/health', (req, res) => {
