@@ -1,5 +1,7 @@
 const Store = require('../models/storeModel');
 const Rating = require('../models/ratingModel');
+const User = require('../models/userModel');
+const { hashPassword } = require('../utils/passwordUtils');
 
 const getStores = async (req, res, next) => {
   try {
@@ -61,8 +63,30 @@ const modifyRating = async (req, res, next) => {
   }
 };
 
+const updatePassword = async (req, res, next) => {
+  try {
+    const { newPassword } = req.body;
+    const userId = req.user.id;
+
+    const hashedPassword = await hashPassword(newPassword);
+    const updated = await User.updatePassword(userId, hashedPassword);
+
+    if (!updated) {
+      return res.status(400).json({ success: false, message: 'Failed to update password' });
+    }
+
+    res.status(200).json({
+      success: true,
+      message: 'Password updated successfully'
+    });
+  } catch (err) {
+    next(err);
+  }
+};
+
 module.exports = {
   getStores,
   submitRating,
-  modifyRating
+  modifyRating,
+  updatePassword
 };
