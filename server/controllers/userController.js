@@ -1,6 +1,5 @@
 const Store = require('../models/storeModel');
-const User = require('../models/userModel');
-const pool = require('../config/db');
+const Rating = require('../models/ratingModel');
 
 const getStores = async (req, res, next) => {
   try {
@@ -18,6 +17,27 @@ const getStores = async (req, res, next) => {
   }
 };
 
+const submitRating = async (req, res, next) => {
+  try {
+    const { store_id, rating } = req.body;
+    const user_id = req.user.id;
+
+    if (rating < 1 || rating > 5) {
+      return res.status(400).json({ success: false, message: 'Rating must be between 1 and 5' });
+    }
+
+    await Rating.submit({ user_id, store_id, rating });
+
+    res.status(200).json({
+      success: true,
+      message: 'Rating submitted successfully'
+    });
+  } catch (err) {
+    next(err);
+  }
+};
+
 module.exports = {
-  getStores
+  getStores,
+  submitRating
 };
