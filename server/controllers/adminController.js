@@ -66,8 +66,23 @@ const getStats = async (req, res, next) => {
   }
 };
 
+const getStores = async (req, res, next) => {
+  try {
+    const { name, email, address, sortBy, order } = req.query;
+    const stores = await Store.findAll({ name, email, address, sortBy, order });
+
+    res.status(200).json({
+      success: true,
+      data: stores
+    });
+  } catch (err) {
+    next(err);
+  }
+};
+
 module.exports = {
   addStore,
   addUser,
-  getStats
+  getStats,
+  getStores
 };

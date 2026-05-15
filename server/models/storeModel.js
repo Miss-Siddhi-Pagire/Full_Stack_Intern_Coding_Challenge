@@ -12,7 +12,12 @@ const Store = {
 
   findAll: async (filters = {}) => {
     const { name, email, address, sortBy, order } = filters;
-    let query = 'SELECT s.*, u.name as owner_name FROM stores s LEFT JOIN users u ON s.owner_id = u.id WHERE 1=1';
+    let query = `
+      SELECT s.*, u.name as owner_name, 
+      (SELECT AVG(rating) FROM ratings WHERE store_id = s.id) as overall_rating
+      FROM stores s 
+      LEFT JOIN users u ON s.owner_id = u.id 
+      WHERE 1=1`;
     const params = [];
 
     if (name) {
