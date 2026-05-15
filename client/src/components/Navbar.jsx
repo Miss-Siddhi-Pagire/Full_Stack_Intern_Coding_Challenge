@@ -25,7 +25,7 @@ const Navbar = ({ title, user }) => {
             </div>
             <span className="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-indigo-600 to-indigo-800">
               {title}
-            </div>
+            </span>
           </div>
           <div className="flex items-center space-x-6">
             <div className="hidden sm:flex flex-col items-end">
