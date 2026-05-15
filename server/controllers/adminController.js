@@ -1,3 +1,4 @@
+const pool = require('../config/db');
 const Store = require('../models/storeModel');
 const User = require('../models/userModel');
 const { hashPassword } = require('../utils/passwordUtils');
@@ -46,7 +47,27 @@ const addUser = async (req, res, next) => {
   }
 };
 
+const getStats = async (req, res, next) => {
+  try {
+    const [userCount] = await pool.query('SELECT COUNT(*) as total FROM users');
+    const [storeCount] = await pool.query('SELECT COUNT(*) as total FROM stores');
+    const [ratingCount] = await pool.query('SELECT COUNT(*) as total FROM ratings');
+
+    res.status(200).json({
+      success: true,
+      data: {
+        totalUsers: userCount[0].total,
+        totalStores: storeCount[0].total,
+        totalRatings: ratingCount[0].total
+      }
+    });
+  } catch (err) {
+    next(err);
+  }
+};
+
 module.exports = {
   addStore,
-  addUser
+  addUser,
+  getStats
 };

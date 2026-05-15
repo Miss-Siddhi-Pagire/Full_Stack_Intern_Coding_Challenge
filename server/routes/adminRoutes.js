@@ -9,5 +9,6 @@ router.use(authenticate, authorize('Admin'));
 
 router.post('/stores', adminController.addStore);
 router.post('/users', adminController.addUser);
+router.get('/stats', adminController.getStats);
 
 module.exports = router;
