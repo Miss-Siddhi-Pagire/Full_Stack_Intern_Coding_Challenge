@@ -11,6 +11,10 @@ app.use(express.json());
 
 const pool = require('./config/db');
 const errorMiddleware = require('./middleware/errorMiddleware');
+const authRoutes = require('./routes/authRoutes');
+
+// Routes
+app.use('/api/auth', authRoutes);
 
 // Health Check Route
 app.get('/health', (req, res) => {
