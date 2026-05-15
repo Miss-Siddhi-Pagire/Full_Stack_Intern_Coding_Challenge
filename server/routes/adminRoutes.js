@@ -8,5 +8,6 @@ const authorize = require('../middleware/roleMiddleware');
 router.use(authenticate, authorize('Admin'));
 
 router.post('/stores', adminController.addStore);
+router.post('/users', adminController.addUser);
 
 module.exports = router;
