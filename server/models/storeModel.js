@@ -11,14 +11,16 @@ const Store = {
   },
 
   findAll: async (filters = {}) => {
-    const { name, email, address, sortBy, order } = filters;
+    const { name, email, address, sortBy, order, userId } = filters;
     let query = `
       SELECT s.*, u.name as owner_name, 
       (SELECT AVG(rating) FROM ratings WHERE store_id = s.id) as overall_rating
+      ${userId ? ', (SELECT rating FROM ratings WHERE store_id = s.id AND user_id = ?) as user_rating' : ''}
       FROM stores s 
       LEFT JOIN users u ON s.owner_id = u.id 
       WHERE 1=1`;
     const params = [];
+    if (userId) params.push(userId);
 
     if (name) {
       query += ' AND s.name LIKE ?';

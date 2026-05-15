@@ -13,10 +13,12 @@ const pool = require('./config/db');
 const errorMiddleware = require('./middleware/errorMiddleware');
 const authRoutes = require('./routes/authRoutes');
 const adminRoutes = require('./routes/adminRoutes');
+const userRoutes = require('./routes/userRoutes');
 
 // Routes
 app.use('/api/auth', authRoutes);
 app.use('/api/admin', adminRoutes);
+app.use('/api/user', userRoutes);
 
 // Health Check Route
 app.get('/health', (req, res) => {
