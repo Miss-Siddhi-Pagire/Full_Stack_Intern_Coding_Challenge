@@ -80,9 +80,24 @@ const getStores = async (req, res, next) => {
   }
 };
 
+const getUsers = async (req, res, next) => {
+  try {
+    const { name, email, address, role, sortBy, order } = req.query;
+    const users = await User.findAll({ name, email, address, role, sortBy, order });
+
+    res.status(200).json({
+      success: true,
+      data: users
+    });
+  } catch (err) {
+    next(err);
+  }
+};
+
 module.exports = {
   addStore,
   addUser,
   getStats,
-  getStores
+  getStores,
+  getUsers
 };

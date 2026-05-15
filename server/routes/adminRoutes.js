@@ -11,5 +11,6 @@ router.post('/stores', adminController.addStore);
 router.post('/users', adminController.addUser);
 router.get('/stats', adminController.getStats);
 router.get('/stores', adminController.getStores);
+router.get('/users', adminController.getUsers);
 
 module.exports = router;
