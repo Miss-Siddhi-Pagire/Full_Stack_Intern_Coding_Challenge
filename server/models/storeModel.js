@@ -46,6 +46,31 @@ const Store = {
   findById: async (id) => {
     const [rows] = await pool.query('SELECT * FROM stores WHERE id = ?', [id]);
     return rows[0];
+  },
+
+  getStats: async (storeId) => {
+    const [rows] = await pool.query(
+      'SELECT AVG(rating) as averageRating, COUNT(*) as totalRatings FROM ratings WHERE store_id = ?',
+      [storeId]
+    );
+    return rows[0];
+  },
+
+  getRatings: async (storeId) => {
+    const [rows] = await pool.query(
+      `SELECT r.*, u.name as user_name, u.email as user_email 
+       FROM ratings r 
+       JOIN users u ON r.user_id = u.id 
+       WHERE r.store_id = ? 
+       ORDER BY r.created_at DESC`,
+      [storeId]
+    );
+    return rows;
+  },
+
+  findByOwnerId: async (ownerId) => {
+    const [rows] = await pool.query('SELECT * FROM stores WHERE owner_id = ?', [ownerId]);
+    return rows[0];
   }
 };
 
