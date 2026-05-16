@@ -24,6 +24,34 @@ const Rating = {
       [user_id, store_id]
     );
     return result.affectedRows > 0;
+  },
+
+  getTrends: async (storeId) => {
+    let query = `
+      SELECT DATE_FORMAT(created_at, '%Y-%m-%d') as date, AVG(rating) as avg_rating, COUNT(*) as count 
+      FROM ratings 
+      WHERE 1=1
+    `;
+    const params = [];
+    if (storeId) {
+      query += ' AND store_id = ?';
+      params.push(storeId);
+    }
+    query += ' GROUP BY date ORDER BY date ASC LIMIT 30';
+    const [rows] = await pool.query(query, params);
+    return rows;
+  },
+
+  getDistribution: async (storeId) => {
+    let query = 'SELECT rating, COUNT(*) as count FROM ratings WHERE 1=1';
+    const params = [];
+    if (storeId) {
+      query += ' AND store_id = ?';
+      params.push(storeId);
+    }
+    query += ' GROUP BY rating ORDER BY rating DESC';
+    const [rows] = await pool.query(query, params);
+    return rows;
   }
 };
 

@@ -4,7 +4,10 @@ const ownerController = require('../controllers/ownerController');
 const authenticate = require('../middleware/authMiddleware');
 const authorize = require('../middleware/roleMiddleware');
 
-router.get('/stats', authenticate, authorize('Store Owner'), ownerController.getStoreStats);
-router.get('/ratings', authenticate, authorize('Store Owner'), ownerController.getRatings);
+router.use(authenticate, authorize('Store Owner'));
+
+router.get('/stats', ownerController.getStoreStats);
+router.get('/ratings', ownerController.getRatings);
+router.get('/analytics', ownerController.getAnalytics);
 
 module.exports = router;
