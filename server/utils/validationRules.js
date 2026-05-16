@@ -22,7 +22,21 @@ const loginRules = [
   body('password').notEmpty().withMessage('Password is required')
 ];
 
+const storeRules = [
+  body('name')
+    .notEmpty().withMessage('Store name is required')
+    .isLength({ max: 60 }).withMessage('Store name cannot exceed 60 characters'),
+  body('email')
+    .isEmail().withMessage('Valid store email is required'),
+  body('address')
+    .notEmpty().withMessage('Store address is required')
+    .isLength({ max: 400 }).withMessage('Store address cannot exceed 400 characters'),
+  body('owner_id')
+    .notEmpty().withMessage('Owner ID is required')
+];
+
 module.exports = {
   registrationRules,
-  loginRules
+  loginRules,
+  storeRules
 };

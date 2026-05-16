@@ -2,9 +2,15 @@ const pool = require('../config/db');
 const Store = require('../models/storeModel');
 const User = require('../models/userModel');
 const { hashPassword } = require('../utils/passwordUtils');
+const { validationResult } = require('express-validator');
 
 const addStore = async (req, res, next) => {
   try {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      return res.status(400).json({ success: false, errors: errors.array() });
+    }
+
     const { name, address, email, owner_id } = req.body;
 
     const storeId = await Store.create({ name, address, email, owner_id });
@@ -21,6 +27,11 @@ const addStore = async (req, res, next) => {
 
 const addUser = async (req, res, next) => {
   try {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      return res.status(400).json({ success: false, errors: errors.array() });
+    }
+
     const { name, email, password, address, role } = req.body;
 
     const existingUser = await User.findByEmail(email);
