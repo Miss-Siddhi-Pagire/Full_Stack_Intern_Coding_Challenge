@@ -30,7 +30,7 @@ const Sidebar = ({ user }) => {
     <aside className={`bg-white border-r border-gray-200 min-h-screen transition-all duration-300 flex flex-col ${collapsed ? 'w-20' : 'w-64'}`}>
       <div className="p-6 flex items-center justify-between border-b border-gray-200">
         {!collapsed && (
-          <span className="text-xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-indigo-600 to-indigo-800">
+          <span className="text-xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-emerald-600 to-teal-800">
             StoreRating
           </span>
         )}
@@ -50,8 +50,8 @@ const Sidebar = ({ user }) => {
             className={({ isActive }) => `
               flex items-center space-x-3 p-3 rounded-xl transition-all
               ${isActive 
-                ? 'bg-indigo-600 text-white shadow-md' 
-                : 'text-gray-500 hover:bg-indigo-50 hover:text-indigo-600'}
+                ? 'bg-emerald-600 text-white shadow-md' 
+                : 'text-gray-500 hover:bg-emerald-50 hover:text-emerald-600'}
             `}
           >
             <link.icon size={20} />
@@ -62,7 +62,7 @@ const Sidebar = ({ user }) => {
 
       <div className="p-4 border-t border-gray-200">
         <div className={`flex items-center space-x-3 p-3 rounded-xl bg-gray-50 ${collapsed ? 'justify-center' : ''}`}>
-          <div className="w-10 h-10 rounded-full bg-indigo-100 flex items-center justify-center text-indigo-600 font-bold shrink-0">
+          <div className="w-10 h-10 rounded-full bg-emerald-100 flex items-center justify-center text-emerald-600 font-bold shrink-0">
             {user?.name?.[0]}
           </div>
           {!collapsed && (

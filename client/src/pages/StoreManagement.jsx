@@ -93,13 +93,13 @@ const StoreManagement = () => {
             <input 
               type="text" 
               placeholder="Search stores..." 
-              className="pl-9 pr-4 py-2 border rounded-xl text-sm outline-none focus:ring-2 focus:ring-indigo-600"
+              className="pl-9 pr-4 py-2 border rounded-xl text-sm outline-none focus:ring-2 focus:ring-emerald-600"
               onChange={(e) => handleSearch(e.target.value)}
             />
           </div>
           <button 
             onClick={() => {setShowForm(true); setEditingId(null)}}
-            className="px-4 py-2 bg-indigo-600 text-white rounded-xl font-bold flex items-center gap-2 hover:bg-indigo-700 transition-colors shadow-lg"
+            className="px-4 py-2 bg-emerald-600 text-white rounded-xl font-bold flex items-center gap-2 hover:bg-emerald-700 transition-colors shadow-lg"
           >
             <Plus size={18} /> Add Store
           </button>
@@ -115,7 +115,7 @@ const StoreManagement = () => {
           <button 
             key={s.col}
             onClick={() => handleSort(s.col)}
-            className={`px-4 py-2 rounded-full text-xs font-bold border transition-all flex items-center gap-2 whitespace-nowrap ${filters.sortBy === s.col ? 'bg-indigo-600 text-white border-indigo-600' : 'bg-white text-gray-500 hover:border-indigo-600'}`}
+            className={`px-4 py-2 rounded-full text-xs font-bold border transition-all flex items-center gap-2 whitespace-nowrap ${filters.sortBy === s.col ? 'bg-emerald-600 text-white border-emerald-600' : 'bg-white text-gray-500 hover:border-emerald-600'}`}
           >
             Sort by {s.label} <ArrowUpDown size={12} />
           </button>
@@ -125,7 +125,7 @@ const StoreManagement = () => {
       {showForm && (
         <div className="bg-white p-8 rounded-3xl shadow-xl border mb-8 animate-in fade-in slide-in-from-top-4 duration-300">
           <h2 className="text-xl font-bold mb-6 flex items-center gap-2">
-            <Store className="text-indigo-600" /> {editingId ? 'Edit Store' : 'Create New Store'}
+            <Store className="text-emerald-600" /> {editingId ? 'Edit Store' : 'Create New Store'}
           </h2>
           <form onSubmit={handleSubmit} className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div className="space-y-1">
@@ -155,7 +155,7 @@ const StoreManagement = () => {
               <input type="text" placeholder="Street address, City" required className="w-full p-3 border rounded-xl" value={formData.address} onChange={e => setFormData({...formData, address: e.target.value})} />
             </div>
             <div className="md:col-span-2 flex gap-2 pt-4">
-              <button type="submit" className="flex-1 py-3 bg-indigo-600 text-white rounded-xl font-bold hover:bg-indigo-700 transition-colors">
+              <button type="submit" className="flex-1 py-3 bg-emerald-600 text-white rounded-xl font-bold hover:bg-emerald-700 transition-colors">
                 {editingId ? 'Update Store Details' : 'Create Store'}
               </button>
               <button type="button" onClick={() => setShowForm(false)} className="px-6 py-3 bg-gray-100 rounded-xl font-bold hover:bg-gray-200">Cancel</button>
@@ -173,7 +173,7 @@ const StoreManagement = () => {
         {stores.map(s => (
           <div key={s.id} className="bg-white p-6 rounded-3xl shadow-sm border flex justify-between items-start hover:shadow-md transition-all group">
             <div className="flex gap-4">
-              <div className="p-4 bg-indigo-50 text-indigo-600 rounded-2xl h-fit group-hover:bg-indigo-600 group-hover:text-white transition-colors">
+              <div className="p-4 bg-emerald-50 text-emerald-600 rounded-2xl h-fit group-hover:bg-emerald-600 group-hover:text-white transition-colors">
                 <Store size={24} />
               </div>
               <div>
@@ -191,8 +191,8 @@ const StoreManagement = () => {
               </div>
             </div>
             <div className="flex gap-1">
-              <button onClick={() => navigate(`/admin/stores/${s.id}/ratings`)} className="p-2 text-gray-400 hover:text-indigo-600" title="View Ratings"><Eye size={18}/></button>
-              <button onClick={() => {setEditingId(s.id); setFormData(s); setShowForm(true)}} className="p-2 text-gray-400 hover:text-indigo-600" title="Edit Store"><Edit size={18}/></button>
+              <button onClick={() => navigate(`/admin/stores/${s.id}/ratings`)} className="p-2 text-gray-400 hover:text-emerald-600" title="View Ratings"><Eye size={18}/></button>
+              <button onClick={() => {setEditingId(s.id); setFormData(s); setShowForm(true)}} className="p-2 text-gray-400 hover:text-emerald-600" title="Edit Store"><Edit size={18}/></button>
               <button onClick={() => handleDelete(s.id)} className="p-2 text-gray-400 hover:text-red-600" title="Delete Store"><Trash2 size={18}/></button>
             </div>
           </div>

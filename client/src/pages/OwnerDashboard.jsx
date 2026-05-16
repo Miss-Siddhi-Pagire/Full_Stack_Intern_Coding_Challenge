@@ -36,7 +36,7 @@ const OwnerDashboard = () => {
 
   if (loading) return <div className="animate-pulse space-y-8"><div className="h-40 bg-gray-200 rounded-3xl"></div><div className="h-96 bg-gray-200 rounded-3xl"></div></div>;
 
-  const COLORS = ['#4f46e5', '#10b981', '#f59e0b', '#ef4444', '#6366f1'];
+  const COLORS = ['#10b981', '#059669', '#14b8a6', '#0f766e', '#115e59'];
 
   return (
     <div className="space-y-8">
@@ -45,7 +45,7 @@ const OwnerDashboard = () => {
           <h1 className="text-3xl font-black text-gray-900 dark:text-white">{stats.storeName}</h1>
           <p className="text-gray-500">Store Performance Analytics</p>
         </div>
-        <div className="bg-indigo-600 px-6 py-3 rounded-2xl text-white shadow-lg flex items-center gap-3">
+        <div className="bg-emerald-600 px-6 py-3 rounded-2xl text-white shadow-lg flex items-center gap-3">
           <Star className="fill-current" />
           <span className="text-2xl font-bold">{Number(stats.averageRating).toFixed(1)}</span>
         </div>
@@ -55,7 +55,7 @@ const OwnerDashboard = () => {
         {/* Performance Chart */}
         <div className="bg-white dark:bg-gray-800 p-8 rounded-3xl shadow-sm border dark:border-gray-700">
           <h3 className="text-lg font-bold mb-6 flex items-center gap-2 dark:text-white">
-            <TrendingUp size={20} className="text-indigo-600" /> Rating Trend (30 Days)
+            <TrendingUp size={20} className="text-emerald-600" /> Rating Trend (30 Days)
           </h3>
           <div style={{ height: '300px', width: '100%' }}>
             <ResponsiveContainer>
@@ -64,7 +64,7 @@ const OwnerDashboard = () => {
                 <XAxis dataKey="date" tick={{fontSize: 10}} />
                 <YAxis domain={[0, 5]} />
                 <Tooltip />
-                <Line type="monotone" dataKey="avg_rating" stroke="#4f46e5" strokeWidth={4} dot={{r: 4, fill: '#4f46e5'}} />
+                <Line type="monotone" dataKey="avg_rating" stroke="#10b981" strokeWidth={3} dot={{r: 4, fill: '#10b981'}} />
               </LineChart>
             </ResponsiveContainer>
           </div>

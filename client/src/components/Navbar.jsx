@@ -10,7 +10,7 @@ const Navbar = ({ title, user }) => {
   };
 
   const getRoleIcon = () => {
-    if (user?.role === 'Admin') return <ShieldCheck size={20} className="text-indigo-600" />;
+    if (user?.role === 'Admin') return <ShieldCheck size={20} className="text-emerald-600" />;
     if (user?.role === 'Store Owner') return <Store size={20} className="text-amber-600" />;
     return <User size={20} className="text-emerald-600" />;
   };
@@ -23,7 +23,7 @@ const Navbar = ({ title, user }) => {
             <div className="p-2 bg-gray-50 rounded-lg">
               {getRoleIcon()}
             </div>
-            <span className="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-indigo-600 to-indigo-800">
+            <span className="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-emerald-600 to-emerald-800">
               {title}
             </span>
           </div>

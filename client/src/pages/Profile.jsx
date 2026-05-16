@@ -80,7 +80,7 @@ const Profile = () => {
 
           <button 
             type="submit" 
-            className="w-full py-4 bg-indigo-600 text-white rounded-xl font-bold hover:bg-indigo-700 transition-colors shadow-lg flex items-center justify-center gap-2"
+            className="w-full py-4 bg-emerald-600 text-white rounded-xl font-bold hover:bg-emerald-700 transition-colors shadow-lg flex items-center justify-center gap-2"
           >
             <Save size={20} />
             Update Profile

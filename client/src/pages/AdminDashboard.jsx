@@ -111,7 +111,7 @@ const AdminDashboard = () => {
         <div className="flex gap-3">
           <button 
             onClick={() => {setShowUserForm(true); setEditingItem(null)}}
-            className="px-4 py-2 bg-indigo-600 text-white rounded-xl font-bold flex items-center gap-2 hover:bg-indigo-700 transition-colors"
+            className="px-4 py-2 bg-emerald-600 text-white rounded-xl font-bold flex items-center gap-2 hover:bg-emerald-700 transition-colors"
           >
             <Users size={18} /> Add User
           </button>
@@ -127,7 +127,7 @@ const AdminDashboard = () => {
       {/* Stats Cards */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
         {[
-          { label: 'Total Users', val: stats.totalUsers, icon: Users, col: 'indigo' },
+          { label: 'Total Users', val: stats.totalUsers, icon: Users, col: 'emerald' },
           { label: 'Total Stores', val: stats.totalStores, icon: Store, col: 'emerald' },
           { label: 'Total Ratings', val: stats.totalRatings, icon: Star, col: 'amber' }
         ].map((s, i) => (
@@ -147,7 +147,7 @@ const AdminDashboard = () => {
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
         <div className="bg-white dark:bg-gray-800 p-6 rounded-3xl shadow-sm border dark:border-gray-700">
           <h3 className="text-lg font-bold mb-6 flex items-center gap-2 dark:text-white">
-            <TrendingUp size={20} className="text-indigo-600" /> Global Rating Trends
+            <TrendingUp size={20} className="text-emerald-600" /> Global Rating Trends
           </h3>
           <div style={{ height: '300px', width: '100%' }}>
             <ResponsiveContainer>
@@ -198,7 +198,7 @@ const AdminDashboard = () => {
                   <option value="Admin">Admin</option>
                 </select>
                 <textarea placeholder="Address" className="w-full p-3 border dark:border-gray-700 rounded-xl dark:bg-gray-900 dark:text-white" value={userForm.address} onChange={e => setUserForm({...userForm, address: e.target.value})} />
-                <button type="submit" className="w-full py-3 bg-indigo-600 text-white rounded-xl font-bold">Save Changes</button>
+                <button type="submit" className="w-full py-3 bg-emerald-600 text-white rounded-xl font-bold">Save Changes</button>
               </form>
             ) : (
               <form onSubmit={handleAddStore} className="space-y-4">
@@ -232,13 +232,13 @@ const AdminDashboard = () => {
             <tbody className="divide-y dark:divide-gray-700">
               {users.map(u => (
                 <tr key={u.id} className="hover:bg-gray-50 dark:hover:bg-gray-900 transition-colors">
-                  <td className="px-6 py-4 text-sm font-bold text-indigo-600">#{u.id}</td>
+                  <td className="px-6 py-4 text-sm font-bold text-emerald-600">#{u.id}</td>
                   <td className="px-6 py-4">
                     <div className="text-sm font-bold dark:text-white">{u.name}</div>
                     <div className="text-xs text-gray-500">{u.email}</div>
                   </td>
                   <td className="px-6 py-4">
-                    <span className={`px-2 py-1 rounded-lg text-xs font-bold ${u.role === 'Admin' ? 'bg-indigo-100 text-indigo-700' : 'bg-emerald-100 text-emerald-700'}`}>{u.role}</span>
+                    <span className={`px-2 py-1 rounded-lg text-xs font-bold ${u.role === 'Admin' ? 'bg-emerald-100 text-emerald-700' : 'bg-emerald-100 text-emerald-700'}`}>{u.role}</span>
                   </td>
                   <td className="px-6 py-4">
                     <button onClick={() => handleToggleStatus(u.id, u.status)} className={`flex items-center gap-1 text-xs font-bold ${u.status === 'Active' ? 'text-emerald-600' : 'text-red-500'}`}>
@@ -247,7 +247,7 @@ const AdminDashboard = () => {
                   </td>
                   <td className="px-6 py-4 text-right">
                     <div className="flex justify-end gap-2">
-                      <button onClick={() => {setEditingItem(u); setUserForm(u); setShowUserForm(true)}} className="p-2 text-gray-400 hover:text-indigo-600"><Edit size={18}/></button>
+                      <button onClick={() => {setEditingItem(u); setUserForm(u); setShowUserForm(true)}} className="p-2 text-gray-400 hover:text-emerald-600"><Edit size={18}/></button>
                       <button onClick={() => handleDeleteUser(u.id)} className="p-2 text-gray-400 hover:text-red-600"><Trash2 size={18}/></button>
                     </div>
                   </td>

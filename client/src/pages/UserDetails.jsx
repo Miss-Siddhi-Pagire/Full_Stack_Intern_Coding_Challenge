@@ -31,19 +31,19 @@ const UserDetails = () => {
     <div className="max-w-4xl mx-auto space-y-8">
       <button 
         onClick={() => navigate(-1)}
-        className="flex items-center gap-2 text-gray-500 hover:text-indigo-600 font-bold transition-colors"
+        className="flex items-center gap-2 text-gray-500 hover:text-emerald-600 font-bold transition-colors"
       >
         <ArrowLeft size={20} /> Back to List
       </button>
 
       <div className="bg-white rounded-3xl shadow-sm border overflow-hidden">
-        <div className="bg-indigo-600 p-8 text-white flex items-center gap-6">
+        <div className="bg-emerald-600 p-8 text-white flex items-center gap-6">
           <div className="w-24 h-24 rounded-full bg-white/20 backdrop-blur-md flex items-center justify-center text-4xl font-black">
             {user.name[0]}
           </div>
           <div>
             <h1 className="text-3xl font-black">{user.name}</h1>
-            <p className="text-indigo-100 flex items-center gap-2 mt-1">
+            <p className="text-emerald-100 flex items-center gap-2 mt-1">
               <Shield size={16} /> {user.role}
             </p>
           </div>

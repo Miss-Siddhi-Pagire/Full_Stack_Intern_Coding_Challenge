@@ -76,7 +76,7 @@ const UserManagement = () => {
       onClick={() => handleSort(column)}
     >
       <div className="flex items-center gap-2">
-        {label} <ArrowUpDown size={14} className={filters.sortBy === column ? 'text-indigo-600' : 'text-gray-300'} />
+        {label} <ArrowUpDown size={14} className={filters.sortBy === column ? 'text-emerald-600' : 'text-gray-300'} />
       </div>
     </th>
   );
@@ -117,12 +117,12 @@ const UserManagement = () => {
           <tbody className="divide-y">
             {users.map(u => (
               <tr key={u.id} className="hover:bg-gray-50 transition-colors">
-                <td className="px-6 py-4 text-sm font-bold text-indigo-600">#{u.id}</td>
+                <td className="px-6 py-4 text-sm font-bold text-emerald-600">#{u.id}</td>
                 <td className="px-6 py-4 font-bold text-gray-900">{u.name}</td>
                 <td className="px-6 py-4 text-sm text-gray-600">{u.email}</td>
                 <td className="px-6 py-4">
                   <span className={`px-2 py-1 rounded-lg text-xs font-bold ${
-                    u.role === 'Admin' ? 'bg-indigo-100 text-indigo-700' : 
+                    u.role === 'Admin' ? 'bg-emerald-100 text-emerald-700' : 
                     u.role === 'Store Owner' ? 'bg-amber-100 text-amber-700' : 'bg-emerald-100 text-emerald-700'
                   }`}>
                     {u.role}
@@ -135,7 +135,7 @@ const UserManagement = () => {
                 </td>
                 <td className="px-6 py-4 text-right">
                   <div className="flex justify-end gap-1">
-                    <button onClick={() => navigate(`/admin/users/${u.id}`)} className="p-2 text-gray-400 hover:text-indigo-600 title='View Details'"><Eye size={18}/></button>
+                    <button onClick={() => navigate(`/admin/users/${u.id}`)} className="p-2 text-gray-400 hover:text-emerald-600 title='View Details'"><Eye size={18}/></button>
                     <button onClick={() => handleResetPassword(u.id)} className="p-2 text-gray-400 hover:text-amber-600 title='Reset Password'"><Key size={18}/></button>
                     <button onClick={() => handleDelete(u.id)} className="p-2 text-gray-400 hover:text-red-600"><Trash2 size={18}/></button>
                   </div>

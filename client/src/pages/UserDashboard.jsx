@@ -45,7 +45,7 @@ const UserDashboard = () => {
             <input 
               type="text" 
               placeholder="Store Name..." 
-              className="w-full pl-10 pr-4 py-2 border rounded-xl text-sm outline-none focus:ring-2 focus:ring-indigo-600"
+              className="w-full pl-10 pr-4 py-2 border rounded-xl text-sm outline-none focus:ring-2 focus:ring-emerald-600"
               onChange={(e) => handleSearch('name', e.target.value)}
             />
           </div>
@@ -54,7 +54,7 @@ const UserDashboard = () => {
             <input 
               type="text" 
               placeholder="Location/Address..." 
-              className="w-full pl-10 pr-4 py-2 border rounded-xl text-sm outline-none focus:ring-2 focus:ring-indigo-600"
+              className="w-full pl-10 pr-4 py-2 border rounded-xl text-sm outline-none focus:ring-2 focus:ring-emerald-600"
               onChange={(e) => handleSearch('address', e.target.value)}
             />
           </div>
@@ -73,7 +73,7 @@ const UserDashboard = () => {
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
         {stores.map((store) => (
           <div key={store.id} className="group bg-white rounded-3xl shadow-sm border overflow-hidden hover:shadow-xl transition-all duration-300 hover:-translate-y-2">
-            <div className="h-40 bg-gradient-to-br from-indigo-500 to-indigo-700 p-6 flex flex-col justify-between relative overflow-hidden text-white">
+            <div className="h-40 bg-gradient-to-br from-emerald-500 to-teal-700 p-6 flex flex-col justify-between relative overflow-hidden text-white">
               <Store className="absolute -top-4 -right-4 w-32 h-32 opacity-10 group-hover:rotate-12 transition-transform" />
               <div className="flex justify-between items-center z-10">
                 <span className="bg-white/20 backdrop-blur-md px-2 py-1 rounded text-[10px] font-black uppercase tracking-wider">
@@ -96,7 +96,7 @@ const UserDashboard = () => {
               <div className="flex items-center justify-between pt-4 border-t">
                 <div className="text-xs font-bold">
                   {store.user_rating ? (
-                    <span className="flex items-center gap-1 text-indigo-600 bg-indigo-50 px-2 py-1 rounded-lg">
+                    <span className="flex items-center gap-1 text-emerald-600 bg-emerald-50 px-2 py-1 rounded-lg">
                       <Star size={12} className="fill-current" /> You rated {store.user_rating}
                     </span>
                   ) : (
@@ -108,7 +108,7 @@ const UserDashboard = () => {
                   className={`flex items-center gap-2 px-4 py-2 rounded-xl font-bold text-sm transition-all ${
                     store.user_rating 
                       ? 'bg-gray-100 text-gray-700 hover:bg-gray-200' 
-                      : 'bg-indigo-600 text-white hover:bg-indigo-700 shadow-md'
+                      : 'bg-emerald-600 text-white hover:bg-emerald-700 shadow-md'
                   }`}
                 >
                   {store.user_rating ? (

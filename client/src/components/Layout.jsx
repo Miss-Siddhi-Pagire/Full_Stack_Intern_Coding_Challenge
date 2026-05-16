@@ -1,6 +1,6 @@
 import Sidebar from './Sidebar';
 import { useNavigate, useLocation, Link } from 'react-router-dom';
-import { LogOut, Bell, Search, ChevronRight, Home } from 'lucide-react';
+import { LogOut, Bell, ChevronRight, Home } from 'lucide-react';
 
 const Layout = ({ children }) => {
   const navigate = useNavigate();
@@ -23,7 +23,7 @@ const Layout = ({ children }) => {
           <div className="flex items-center flex-1 max-w-xl gap-4">
             {/* Breadcrumbs */}
             <nav className="hidden lg:flex items-center space-x-2 text-sm font-medium text-gray-500">
-              <Link to="/" className="hover:text-indigo-600 transition-colors text-gray-400">
+              <Link to="/" className="hover:text-emerald-600 transition-colors text-gray-400">
                 <Home size={16} />
               </Link>
               {pathnames.map((value, index) => {
@@ -33,7 +33,7 @@ const Layout = ({ children }) => {
                     <ChevronRight size={14} className="text-gray-300" />
                     <Link 
                       to={to} 
-                      className={`capitalize hover:text-indigo-600 transition-colors ${index === pathnames.length - 1 ? 'text-indigo-600 font-bold' : ''}`}
+                      className={`capitalize hover:text-emerald-600 transition-colors ${index === pathnames.length - 1 ? 'text-emerald-600 font-bold' : ''}`}
                     >
                       {value.replace('-', ' ')}
                     </Link>
@@ -41,15 +41,6 @@ const Layout = ({ children }) => {
                 );
               })}
             </nav>
-
-            <div className="relative w-full hidden md:block max-w-xs">
-              <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" size={18} />
-              <input 
-                type="text" 
-                placeholder="Search..." 
-                className="w-full pl-10 pr-4 py-2 bg-gray-50 border-none rounded-xl text-sm outline-none ring-1 ring-gray-200 focus:ring-2 focus:ring-indigo-600 transition-all"
-              />
-            </div>
           </div>
 
           <div className="flex items-center space-x-4">

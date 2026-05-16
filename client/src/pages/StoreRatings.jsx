@@ -36,7 +36,7 @@ const StoreRatings = () => {
     <div className="max-w-4xl mx-auto space-y-6">
       <button 
         onClick={() => navigate(-1)}
-        className="flex items-center gap-2 text-gray-500 hover:text-indigo-600 font-bold transition-colors"
+        className="flex items-center gap-2 text-gray-500 hover:text-emerald-600 font-bold transition-colors"
       >
         <ArrowLeft size={20} /> Back to Stores
       </button>
@@ -57,7 +57,7 @@ const StoreRatings = () => {
 
       <div className="bg-white rounded-3xl shadow-sm border overflow-hidden">
         <div className="px-8 py-6 border-b flex items-center gap-2">
-          <MessageSquare className="text-indigo-600" size={20} />
+          <MessageSquare className="text-emerald-600" size={20} />
           <h2 className="text-lg font-bold">Rating Log</h2>
         </div>
         <div className="divide-y">
@@ -65,7 +65,7 @@ const StoreRatings = () => {
             <div key={i} className="p-8 hover:bg-gray-50 transition-colors">
               <div className="flex justify-between items-start mb-4">
                 <div className="flex items-center gap-4">
-                  <div className="w-12 h-12 rounded-full bg-indigo-50 flex items-center justify-center text-indigo-600 font-black">
+                  <div className="w-12 h-12 rounded-full bg-emerald-50 flex items-center justify-center text-emerald-600 font-black">
                     {r.user_name[0]}
                   </div>
                   <div>

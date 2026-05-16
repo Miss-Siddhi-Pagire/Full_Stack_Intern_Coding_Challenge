@@ -52,7 +52,7 @@ const ChangePassword = () => {
               type="password" 
               required
               placeholder="••••••••"
-              className="w-full p-3 border dark:border-gray-700 rounded-xl bg-gray-50 dark:bg-gray-900 dark:text-white outline-none focus:ring-2 focus:ring-indigo-600 transition-all"
+              className="w-full p-3 border dark:border-gray-700 rounded-xl bg-gray-50 dark:bg-gray-900 dark:text-white outline-none focus:ring-2 focus:ring-emerald-600 transition-all"
               value={passwords.newPassword}
               onChange={e => setPasswords({...passwords, newPassword: e.target.value})}
             />
@@ -66,7 +66,7 @@ const ChangePassword = () => {
               type="password" 
               required
               placeholder="••••••••"
-              className="w-full p-3 border dark:border-gray-700 rounded-xl bg-gray-50 dark:bg-gray-900 dark:text-white outline-none focus:ring-2 focus:ring-indigo-600 transition-all"
+              className="w-full p-3 border dark:border-gray-700 rounded-xl bg-gray-50 dark:bg-gray-900 dark:text-white outline-none focus:ring-2 focus:ring-emerald-600 transition-all"
               value={passwords.confirmPassword}
               onChange={e => setPasswords({...passwords, confirmPassword: e.target.value})}
             />
@@ -75,7 +75,7 @@ const ChangePassword = () => {
           <button 
             type="submit" 
             disabled={loading}
-            className="w-full py-4 bg-indigo-600 text-white rounded-xl font-bold hover:bg-indigo-700 transition-all shadow-lg disabled:opacity-50"
+            className="w-full py-4 bg-emerald-600 text-white rounded-xl font-bold hover:bg-emerald-700 transition-all shadow-lg disabled:opacity-50"
           >
             {loading ? 'Processing...' : 'Update Password'}
           </button>
