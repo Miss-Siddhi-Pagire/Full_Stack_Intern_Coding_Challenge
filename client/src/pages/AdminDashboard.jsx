@@ -200,6 +200,7 @@ const AdminDashboard = () => {
             <table className="w-full text-left">
               <thead className="bg-gray-50 text-gray-500 text-xs uppercase font-semibold">
                 <tr>
+                  <th className="px-6 py-3">ID</th>
                   <th className="px-6 py-3">Name</th>
                   <th className="px-6 py-3">Email</th>
                   <th className="px-6 py-3">Address</th>
@@ -209,6 +210,7 @@ const AdminDashboard = () => {
               <tbody className="divide-y divide-gray-100">
                 {users.map(user => (
                   <tr key={user.id} className="hover:bg-gray-50 transition-colors">
+                    <td className="px-6 py-4 text-sm font-bold text-indigo-600">#{user.id}</td>
                     <td className="px-6 py-4 text-sm font-medium text-gray-900">{user.name}</td>
                     <td className="px-6 py-4 text-sm text-gray-500">{user.email}</td>
                     <td className="px-6 py-4 text-sm text-gray-500 max-w-xs truncate">{user.address}</td>
