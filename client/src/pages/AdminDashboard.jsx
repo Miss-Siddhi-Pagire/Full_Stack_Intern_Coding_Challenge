@@ -9,6 +9,11 @@ const AdminDashboard = () => {
   const [users, setUsers] = useState([]);
   const [stores, setStores] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [showUserForm, setShowUserForm] = useState(false);
+  const [showStoreForm, setShowStoreForm] = useState(false);
+  const [userForm, setUserForm] = useState({ name: '', email: '', password: '', address: '', role: 'User' });
+  const [storeForm, setStoreForm] = useState({ name: '', email: '', address: '', owner_id: '' });
+  const [msg, setMsg] = useState({ type: '', text: '' });
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -32,6 +37,30 @@ const AdminDashboard = () => {
     }
   };
 
+  const handleAddUser = async (e) => {
+    e.preventDefault();
+    try {
+      await api.post('/admin/users', userForm);
+      setMsg({ type: 'success', text: 'User added successfully!' });
+      setShowUserForm(false);
+      fetchData();
+    } catch (err) {
+      setMsg({ type: 'error', text: err.response?.data?.message || err.response?.data?.errors?.[0]?.msg || 'Failed to add user' });
+    }
+  };
+
+  const handleAddStore = async (e) => {
+    e.preventDefault();
+    try {
+      await api.post('/admin/stores', storeForm);
+      setMsg({ type: 'success', text: 'Store added successfully!' });
+      setShowStoreForm(false);
+      fetchData();
+    } catch (err) {
+      setMsg({ type: 'error', text: err.response?.data?.message || err.response?.data?.errors?.[0]?.msg || 'Failed to add store' });
+    }
+  };
+
   const handleLogout = () => {
     localStorage.clear();
     navigate('/login');
@@ -46,6 +75,91 @@ const AdminDashboard = () => {
       <Navbar title="AdminPanel" user={currentUser} />
 
       <main className="max-w-7xl mx-auto py-8 px-4 sm:px-6 lg:px-8">
+        {/* Action Buttons & Message */}
+        <div className="flex flex-col sm:flex-row justify-between items-center mb-8 space-y-4 sm:space-y-0">
+          <div className="flex space-x-4">
+            <button
+              onClick={() => {setShowUserForm(!showUserForm); setShowStoreForm(false)}}
+              className="px-6 py-3 bg-indigo-600 text-white rounded-xl font-bold hover:bg-indigo-700 transition-all shadow-lg flex items-center space-x-2 text-sm"
+            >
+              <Users size={18} />
+              <span>{showUserForm ? 'Cancel' : 'Add New User'}</span>
+            </button>
+            <button
+              onClick={() => {setShowStoreForm(!showStoreForm); setShowUserForm(false)}}
+              className="px-6 py-3 bg-emerald-600 text-white rounded-xl font-bold hover:bg-emerald-700 transition-all shadow-lg flex items-center space-x-2 text-sm"
+            >
+              <Store size={18} />
+              <span>{showStoreForm ? 'Cancel' : 'Add New Store'}</span>
+            </button>
+          </div>
+          {msg.text && (
+            <div className={`px-4 py-2 rounded-lg text-sm font-medium animate-bounce ${msg.type === 'success' ? 'bg-emerald-100 text-emerald-700' : 'bg-red-100 text-red-700'}`}>
+              {msg.text}
+            </div>
+          )}
+        </div>
+
+        {/* Add User Form */}
+        {showUserForm && (
+          <div className="bg-white p-8 rounded-3xl shadow-sm border border-gray-100 mb-8 overflow-hidden transition-all duration-300">
+            <h2 className="text-xl font-bold mb-6 text-gray-800">Create New User Account</h2>
+            <form onSubmit={handleAddUser} className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div className="space-y-2">
+                <label className="text-xs font-bold text-gray-500 uppercase tracking-wider">Full Name</label>
+                <input type="text" placeholder="Min 20 characters" required className="w-full p-3 border rounded-xl focus:ring-2 focus:ring-indigo-600 outline-none" value={userForm.name} onChange={e => setUserForm({...userForm, name: e.target.value})} />
+              </div>
+              <div className="space-y-2">
+                <label className="text-xs font-bold text-gray-500 uppercase tracking-wider">Email Address</label>
+                <input type="email" placeholder="email@example.com" required className="w-full p-3 border rounded-xl focus:ring-2 focus:ring-indigo-600 outline-none" value={userForm.email} onChange={e => setUserForm({...userForm, email: e.target.value})} />
+              </div>
+              <div className="space-y-2">
+                <label className="text-xs font-bold text-gray-500 uppercase tracking-wider">Password</label>
+                <input type="password" placeholder="8-16 chars, 1 Upper, 1 Special" required className="w-full p-3 border rounded-xl focus:ring-2 focus:ring-indigo-600 outline-none" value={userForm.password} onChange={e => setUserForm({...userForm, password: e.target.value})} />
+              </div>
+              <div className="space-y-2">
+                <label className="text-xs font-bold text-gray-500 uppercase tracking-wider">Account Role</label>
+                <select className="w-full p-3 border rounded-xl focus:ring-2 focus:ring-indigo-600 outline-none appearance-none bg-white" value={userForm.role} onChange={e => setUserForm({...userForm, role: e.target.value})}>
+                  <option value="User">Normal User</option>
+                  <option value="Admin">System Administrator</option>
+                  <option value="Store Owner">Store Owner</option>
+                </select>
+              </div>
+              <div className="space-y-2 md:col-span-2">
+                <label className="text-xs font-bold text-gray-500 uppercase tracking-wider">Physical Address</label>
+                <textarea placeholder="Full street address..." required rows="2" className="w-full p-3 border rounded-xl focus:ring-2 focus:ring-indigo-600 outline-none" value={userForm.address} onChange={e => setUserForm({...userForm, address: e.target.value})} />
+              </div>
+              <button type="submit" className="md:col-span-2 py-4 bg-indigo-600 text-white rounded-xl font-bold hover:bg-indigo-700 transition-colors shadow-lg">Register Account</button>
+            </form>
+          </div>
+        )}
+
+        {/* Add Store Form */}
+        {showStoreForm && (
+          <div className="bg-white p-8 rounded-3xl shadow-sm border border-gray-100 mb-8 overflow-hidden transition-all duration-300">
+            <h2 className="text-xl font-bold mb-6 text-gray-800">Register New Store</h2>
+            <form onSubmit={handleAddStore} className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div className="space-y-2">
+                <label className="text-xs font-bold text-gray-500 uppercase tracking-wider">Store Name</label>
+                <input type="text" placeholder="e.g. Starbucks" required className="w-full p-3 border rounded-xl focus:ring-2 focus:ring-emerald-600 outline-none" value={storeForm.name} onChange={e => setStoreForm({...storeForm, name: e.target.value})} />
+              </div>
+              <div className="space-y-2">
+                <label className="text-xs font-bold text-gray-500 uppercase tracking-wider">Store Email</label>
+                <input type="email" placeholder="contact@store.com" required className="w-full p-3 border rounded-xl focus:ring-2 focus:ring-emerald-600 outline-none" value={storeForm.email} onChange={e => setStoreForm({...storeForm, email: e.target.value})} />
+              </div>
+              <div className="space-y-2">
+                <label className="text-xs font-bold text-gray-500 uppercase tracking-wider">Owner ID (User ID)</label>
+                <input type="number" placeholder="Enter User ID of Store Owner" required className="w-full p-3 border rounded-xl focus:ring-2 focus:ring-emerald-600 outline-none" value={storeForm.owner_id} onChange={e => setStoreForm({...storeForm, owner_id: e.target.value})} />
+              </div>
+              <div className="space-y-2">
+                <label className="text-xs font-bold text-gray-500 uppercase tracking-wider">Store Address</label>
+                <input type="text" placeholder="Full street address..." required className="w-full p-3 border rounded-xl focus:ring-2 focus:ring-emerald-600 outline-none" value={storeForm.address} onChange={e => setStoreForm({...storeForm, address: e.target.value})} />
+              </div>
+              <button type="submit" className="md:col-span-2 py-4 bg-emerald-600 text-white rounded-xl font-bold hover:bg-emerald-700 transition-colors shadow-lg">Create Store</button>
+            </form>
+          </div>
+        )}
+
         {/* Stats Grid */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
           <div className="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 flex items-center space-x-4">
