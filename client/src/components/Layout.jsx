@@ -1,24 +1,10 @@
 import Sidebar from './Sidebar';
 import { useNavigate, useLocation, Link } from 'react-router-dom';
-import { LogOut, Bell, Search, Moon, Sun, ChevronRight, Home } from 'lucide-react';
-import { useState, useEffect } from 'react';
+import { LogOut, Bell, Search, ChevronRight, Home } from 'lucide-react';
 
 const Layout = ({ children }) => {
   const navigate = useNavigate();
   const user = JSON.parse(localStorage.getItem('user'));
-  const [isDark, setIsDark] = useState(() => {
-    return localStorage.getItem('theme') === 'dark';
-  });
-
-  useEffect(() => {
-    if (isDark) {
-      document.documentElement.classList.add('dark');
-      localStorage.setItem('theme', 'dark');
-    } else {
-      document.documentElement.classList.remove('dark');
-      localStorage.setItem('theme', 'light');
-    }
-  }, [isDark]);
 
   const handleLogout = () => {
     localStorage.clear();
@@ -29,15 +15,15 @@ const Layout = ({ children }) => {
   const pathnames = location.pathname.split('/').filter((x) => x);
 
   return (
-    <div className="flex min-h-screen bg-gray-50 dark:bg-gray-900 transition-colors duration-300">
+    <div className="flex min-h-screen bg-gray-50 transition-colors duration-300">
       <Sidebar user={user} />
       
       <div className="flex-1 flex flex-col min-w-0 overflow-hidden">
-        <header className="h-16 bg-white dark:bg-gray-800 border-b dark:border-gray-700 flex items-center justify-between px-8 sticky top-0 z-40">
+        <header className="h-16 bg-white border-b border-gray-200 flex items-center justify-between px-8 sticky top-0 z-40">
           <div className="flex items-center flex-1 max-w-xl gap-4">
             {/* Breadcrumbs */}
-            <nav className="hidden lg:flex items-center space-x-2 text-sm font-medium text-gray-500 dark:text-gray-400">
-              <Link to="/" className="hover:text-indigo-600 transition-colors text-gray-400 dark:text-gray-500">
+            <nav className="hidden lg:flex items-center space-x-2 text-sm font-medium text-gray-500">
+              <Link to="/" className="hover:text-indigo-600 transition-colors text-gray-400">
                 <Home size={16} />
               </Link>
               {pathnames.map((value, index) => {
@@ -61,23 +47,17 @@ const Layout = ({ children }) => {
               <input 
                 type="text" 
                 placeholder="Search..." 
-                className="w-full pl-10 pr-4 py-2 bg-gray-50 dark:bg-gray-700 border-none rounded-xl text-sm outline-none ring-1 ring-gray-200 dark:ring-gray-600 focus:ring-2 focus:ring-indigo-600 transition-all"
+                className="w-full pl-10 pr-4 py-2 bg-gray-50 border-none rounded-xl text-sm outline-none ring-1 ring-gray-200 focus:ring-2 focus:ring-indigo-600 transition-all"
               />
             </div>
           </div>
 
           <div className="flex items-center space-x-4">
-            <button 
-              onClick={() => setIsDark(!isDark)}
-              className="p-2 text-gray-500 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg transition-colors"
-            >
-              {isDark ? <Sun size={20} /> : <Moon size={20} />}
-            </button>
-            <button className="p-2 text-gray-500 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg relative transition-colors">
+            <button className="p-2 text-gray-500 hover:bg-gray-100 rounded-lg relative transition-colors">
               <Bell size={20} />
-              <span className="absolute top-2 right-2 w-2 h-2 bg-red-500 rounded-full border-2 border-white dark:border-gray-800"></span>
+              <span className="absolute top-2 right-2 w-2 h-2 bg-red-500 rounded-full border-2 border-white"></span>
             </button>
-            <div className="h-6 w-px bg-gray-200 dark:bg-gray-700 mx-2"></div>
+            <div className="h-6 w-px bg-gray-200 mx-2"></div>
             <button 
               onClick={handleLogout}
               className="flex items-center space-x-2 text-gray-500 hover:text-red-600 font-medium text-sm transition-colors"
@@ -88,7 +68,7 @@ const Layout = ({ children }) => {
           </div>
         </header>
 
-        <main className="flex-1 overflow-y-auto p-8 bg-gray-50 dark:bg-gray-900 transition-colors duration-300">
+        <main className="flex-1 overflow-y-auto p-8 bg-gray-50">
           {children}
         </main>
       </div>
