@@ -3,7 +3,6 @@ const cors = require('cors');
 const helmet = require('helmet');
 const rateLimit = require('express-rate-limit');
 const hpp = require('hpp');
-const xss = require('xss-clean');
 require('dotenv').config();
 
 const app = express();
@@ -13,7 +12,6 @@ const PORT = process.env.PORT || 5000;
 app.use(helmet()); // Security headers
 app.use(cors());
 app.use(express.json({ limit: '10kb' })); // Body limit
-app.use(xss()); // Sanitize user input
 app.use(hpp()); // Prevent HTTP Parameter Pollution
 
 // Rate Limiting
