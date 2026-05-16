@@ -86,8 +86,3 @@ npm run dev
 *   `/server/models`: Data layer with optimized SQL queries.
 *   `/server/controllers`: Business logic for Admin, Owner, and User roles.
 
-## 🎨 UI Aesthetics
-The platform uses the **Ocean Teal Theme**, focusing on high-contrast accessibility, smooth Framer Motion transitions, and a premium "glassmorphism" aesthetic for cards and navigation.
-
----
-Developed as part of the Full Stack Coding Challenge.
