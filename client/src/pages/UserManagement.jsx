@@ -55,7 +55,7 @@ const UserManagement = () => {
   return (
     <div className="space-y-6">
       <div className="flex flex-wrap justify-between items-center gap-4">
-        <h1 className="text-2xl font-black dark:text-white">User Management</h1>
+        <h1 className="text-2xl font-black text-gray-900 dark:text-white">User Management</h1>
         <div className="flex gap-2">
           <div className="relative">
             <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" size={16} />
@@ -128,15 +128,15 @@ const UserManagement = () => {
         <button 
           disabled={filters.page === 1}
           onClick={() => setFilters({...filters, page: filters.page - 1})}
-          className="p-2 border dark:border-gray-700 rounded-xl disabled:opacity-30 hover:bg-white dark:hover:bg-gray-800 transition-colors"
+          className="p-2 border border-gray-200 dark:border-gray-700 rounded-xl disabled:opacity-30 hover:bg-white dark:hover:bg-gray-800 transition-colors text-gray-600 dark:text-gray-400"
         >
           <ChevronLeft size={20} />
         </button>
-        <span className="text-sm font-bold dark:text-white">Page {pagination.page} of {pagination.totalPages}</span>
+        <span className="text-sm font-bold text-gray-900 dark:text-white">Page {pagination.page} of {pagination.totalPages}</span>
         <button 
           disabled={filters.page === pagination.totalPages}
           onClick={() => setFilters({...filters, page: filters.page + 1})}
-          className="p-2 border dark:border-gray-700 rounded-xl disabled:opacity-30 hover:bg-white dark:hover:bg-gray-800 transition-colors"
+          className="p-2 border border-gray-200 dark:border-gray-700 rounded-xl disabled:opacity-30 hover:bg-white dark:hover:bg-gray-800 transition-colors text-gray-600 dark:text-gray-400"
         >
           <ChevronRight size={20} />
         </button>

@@ -36,8 +36,8 @@ const Layout = ({ children }) => {
         <header className="h-16 bg-white dark:bg-gray-800 border-b dark:border-gray-700 flex items-center justify-between px-8 sticky top-0 z-40">
           <div className="flex items-center flex-1 max-w-xl gap-4">
             {/* Breadcrumbs */}
-            <nav className="hidden lg:flex items-center space-x-2 text-sm font-medium text-gray-500">
-              <Link to="/" className="hover:text-indigo-600 transition-colors">
+            <nav className="hidden lg:flex items-center space-x-2 text-sm font-medium text-gray-500 dark:text-gray-400">
+              <Link to="/" className="hover:text-indigo-600 transition-colors text-gray-400 dark:text-gray-500">
                 <Home size={16} />
               </Link>
               {pathnames.map((value, index) => {
