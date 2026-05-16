@@ -149,8 +149,8 @@ const AdminDashboard = () => {
           <h3 className="text-lg font-bold mb-6 flex items-center gap-2 dark:text-white">
             <TrendingUp size={20} className="text-indigo-600" /> Global Rating Trends
           </h3>
-          <div className="h-64 w-full">
-            <ResponsiveContainer width="100%" height="100%">
+          <div style={{ height: '300px', width: '100%' }}>
+            <ResponsiveContainer>
               <LineChart data={analytics.trends}>
                 <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#eee" />
                 <XAxis dataKey="date" tick={{fontSize: 10}} />
@@ -165,8 +165,8 @@ const AdminDashboard = () => {
           <h3 className="text-lg font-bold mb-6 flex items-center gap-2 dark:text-white">
             <Star size={20} className="text-amber-500" /> Rating Distribution
           </h3>
-          <div className="h-64 w-full">
-            <ResponsiveContainer width="100%" height="100%">
+          <div style={{ height: '300px', width: '100%' }}>
+            <ResponsiveContainer>
               <BarChart data={analytics.distribution}>
                 <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#eee" />
                 <XAxis dataKey="rating" />

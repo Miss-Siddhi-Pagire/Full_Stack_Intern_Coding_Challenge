@@ -57,8 +57,8 @@ const OwnerDashboard = () => {
           <h3 className="text-lg font-bold mb-6 flex items-center gap-2 dark:text-white">
             <TrendingUp size={20} className="text-indigo-600" /> Rating Trend (30 Days)
           </h3>
-          <div className="h-64">
-            <ResponsiveContainer width="100%" height="100%">
+          <div style={{ height: '300px', width: '100%' }}>
+            <ResponsiveContainer>
               <LineChart data={analytics.trends}>
                 <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#eee" />
                 <XAxis dataKey="date" tick={{fontSize: 10}} />
@@ -75,8 +75,8 @@ const OwnerDashboard = () => {
           <h3 className="text-lg font-bold mb-6 flex items-center gap-2 dark:text-white">
             <Users size={20} className="text-emerald-500" /> Rating Distribution
           </h3>
-          <div className="h-64">
-            <ResponsiveContainer width="100%" height="100%">
+          <div style={{ height: '300px', width: '100%' }}>
+            <ResponsiveContainer>
               <PieChart>
                 <Pie data={analytics.distribution} dataKey="count" nameKey="rating" cx="50%" cy="50%" innerRadius={60} outerRadius={80} fill="#8884d8" paddingAngle={5}>
                   {analytics.distribution.map((entry, index) => <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />)}

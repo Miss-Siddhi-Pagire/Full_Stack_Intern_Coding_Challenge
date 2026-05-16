@@ -11,7 +11,9 @@ import RateStore from './pages/RateStore';
 import ChangePassword from './pages/ChangePassword';
 import Profile from './pages/Profile';
 import UserManagement from './pages/UserManagement';
+import UserDetails from './pages/UserDetails';
 import StoreManagement from './pages/StoreManagement';
+import StoreRatings from './pages/StoreRatings';
 import NotFound from './pages/NotFound';
 import ProtectedRoute from './components/ProtectedRoute';
 import Layout from './components/Layout';
@@ -42,10 +44,26 @@ function App() {
           } 
         />
         <Route 
+          path="/admin/users/:id" 
+          element={
+            <ProtectedRoute allowedRoles={['Admin']}>
+              <Layout><UserDetails /></Layout>
+            </ProtectedRoute>
+          } 
+        />
+        <Route 
           path="/admin/stores" 
           element={
             <ProtectedRoute allowedRoles={['Admin']}>
               <Layout><StoreManagement /></Layout>
+            </ProtectedRoute>
+          } 
+        />
+        <Route 
+          path="/admin/stores/:id/ratings" 
+          element={
+            <ProtectedRoute allowedRoles={['Admin']}>
+              <Layout><StoreRatings /></Layout>
             </ProtectedRoute>
           } 
         />
