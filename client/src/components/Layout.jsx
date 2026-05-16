@@ -6,13 +6,17 @@ import { useState, useEffect } from 'react';
 const Layout = ({ children }) => {
   const navigate = useNavigate();
   const user = JSON.parse(localStorage.getItem('user'));
-  const [isDark, setIsDark] = useState(false);
+  const [isDark, setIsDark] = useState(() => {
+    return localStorage.getItem('theme') === 'dark';
+  });
 
   useEffect(() => {
     if (isDark) {
       document.documentElement.classList.add('dark');
+      localStorage.setItem('theme', 'dark');
     } else {
       document.documentElement.classList.remove('dark');
+      localStorage.setItem('theme', 'light');
     }
   }, [isDark]);
 
